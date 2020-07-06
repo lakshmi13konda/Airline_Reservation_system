@@ -39,19 +39,10 @@ public static void userOperations() {
 			switch (choice2) {
 			case 1:
 				List<FlightDetails> info = service1.getFlightDetails();
-				log.info("<--------------------------------------------------------------------->");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"FlightName", "Source", "Destination", "ArrivalDate", "ArrivalTime", "DepartureDate",
-						"DepartureTime", "NoofSeatAvailable"));
+				
 				for (FlightDetails flightBean : info) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Flights availiable : " + flightBean.toString());
 					} else {
 						log.info("No Flight are available in the Flight Details");
 					}
@@ -64,19 +55,10 @@ public static void userOperations() {
 				FlightDetails bean3 = new FlightDetails();
 				bean3.setSource(source);
 				List<FlightDetails> flightSource1 = service1.searchFlightBySource(source);
-				log.info("<--------------------------------------------------------------------->");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-						"Departure Time", "NoofSeatAvailable"));
+				
 				for (FlightDetails flightBean : flightSource1) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Flights Information with source : " + flightBean.toString());
 					} else {
 						log.info("No Flights are available with this Source");
 					}
@@ -91,19 +73,10 @@ public static void userOperations() {
 				FlightDetails bean4 = new FlightDetails();
 				bean4.setDestination(destination);
 				List<FlightDetails> flightDestination1 = service1.searchFlightByDestination(destination);
-				log.info("<<--------------------------------------------------------------------->>");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-						"Departure Time", "NoofSeatAvailable"));
+				
 				for (FlightDetails flightBean : flightDestination1) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Flights By Destination : "+ flightBean.toString());
 					} else {
 						log.info("No Flights are available with this Destination");
 					}
@@ -117,19 +90,9 @@ public static void userOperations() {
 				bean5.setFlightName(name);
 				;
 				List<FlightDetails> fname = service1.searchFlightByName(name);
-				log.info("<--------------------------------------------------------------------->");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-						"Departure Time", "NoofSeatAvailable"));
 				for (FlightDetails flightBean : fname) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Flight By Name : "+flightBean.toString());
 					} else {
 						log.info("No Flights are available with this Flight Name");
 					}
@@ -146,19 +109,9 @@ public static void userOperations() {
 				bean6.setDestination(destination1);
 				List<FlightDetails> flightSourceToDestination = service1.searchFlightBySourceAndDestination(source1,
 						destination1);
-				log.info("<<--------------------------------------------------------------------->>");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-						"Departure Time", "NoofSeatAvailable"));
 				for (FlightDetails flightBean : flightSourceToDestination) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Flight information with source and destination : "+flightBean.toString());
 					} else {
 						log.info("No Flights are available with this Destination");
 					}
@@ -174,31 +127,19 @@ public static void userOperations() {
 				bean7.setDestination(destination2);
 				List<FlightDetails> flightSourceToDestination1 = service1
 						.searchFlightBySourceAndDestination(source2, destination2);
-				log.info("<<--------------------------------------------------------------------->>");
-				log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s", "FlightId",
-						"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-						"Departure Time", "NoofSeatAvailable"));
 				for (FlightDetails flightBean : flightSourceToDestination1) {
 					if (flightBean != null) {
-						log.info(String.format("%-10s %-10s %-10s %-15s %-15s %-15s %-20s %-20s %s",
-								flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-								flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-								java.sql.Time.valueOf(flightBean.getArrivalTime()),
-								java.sql.Date.valueOf(flightBean.getDepartureDate()),
-								java.sql.Time.valueOf(flightBean.getDepartureTime()),
-								flightBean.getNoofseatsavailable()));
+						log.info("Booked flight information : "+flightBean.toString());
 					} else {
 						log.info("No Flights are available with this Destination");
 					}
 				}
 				do {
 					try {
-						log.info("<--------------------------------------------------------------------->");
 						log.info("[1]  PROCEED TO BOOK");
 						log.info("[2]  GO BACK");
 						log.info("[3]  LOGOUT");
 
-						log.info("<--------------------------------------------------------------------->");
 						int choice3 = scanner.nextInt();
 						switch (choice3) {
 						case 1:
@@ -227,13 +168,7 @@ public static void userOperations() {
 								try {
 									BookingStatus request = service1.bookRequest(bookingStatus);
 									log.info("Request placed to Airline Management ");
-									log.info(
-											"<--------------------------------------------------------------------->");
-									log.info(String.format("%-10s %-10s %-10s %s", "TicketId", "FlightId", "UserID",
-											"NoofSeatBooked"));
-									;
-									log.info(String.format("%-10s %-10s %-10s %s", request.getTicketId(),
-											request.getFlightId(), request.getId(), request.getNoofseatsbooked()));
+									log.info(request.toString());
 								} catch (Exception e) {
 									log.info("Invalid Request of booking");
 								}
@@ -288,14 +223,9 @@ public static void userOperations() {
 				try {
 					int userId = scanner.nextInt();
 					List<BookingStatus> ticket = service1.getTicketDetails(userId);
-
-					log.info("<--------------------------------------------------------------------->");
-					log.info(String.format("%-10s %-10s %-10s %s", "TicketID", "FlightId", "UserID",
-							"NoofSeatBooked"));
 					for (BookingStatus request : ticket) {
 						if (request != null) {
-							log.info(String.format("%-10s %-10s %-10s %s", request.getTicketId(),
-									request.getFlightId(), request.getId(), request.getNoofseatsbooked()));
+							log.info(request.toString());
 						} else {
 							log.info("Request not found in booking status");
 						}

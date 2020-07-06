@@ -45,7 +45,6 @@ public class AdminController {
 			try {
 				log.info("You have logged in successfully");
 				log.info("Now you can perform the following operations:-");
-				log.info("<--------------------------------------------------------------------->");
 				log.info("[1]  ADD FLIGHTS");
 				log.info("[2]  SEARCH FLIGHT BY SOURCE");
 				log.info("[3]  SEARCH FLIGHT BY DESTINATION");
@@ -53,9 +52,8 @@ public class AdminController {
 				log.info("[5]  REMOVE FLIGHT");
 				log.info("[6]  VIEW ALL FLIGHTDETAILS");
 				log.info("[7] ISSUED BOOKING STATUS");
-				log.info("[8] ADD NEW ADMIN or USER");
+				log.info("[8] ADD NEW USER");
 				log.info("[9] LOGOUT");
-				log.info("<--------------------------------------------------------------------->");
 				int choice1 = scanner.nextInt();
 				switch (choice1) {
 				case 1:
@@ -222,19 +220,9 @@ public class AdminController {
 					FlightDetails bean3 = new FlightDetails();
 					bean3.setSource(source);
 					List<FlightDetails> flightSource1 = service.searchFlightBySource(source);
-					log.info("<--------------------------------------------------------------------->");
-					log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s", "FlightId",
-							"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "DepartureDate",
-							"Departure Time", "NoofSeatAvailable"));
 					for (FlightDetails flightBean : flightSource1) {
 						if (flightBean != null) {
-							log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s",
-									flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-									flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-									java.sql.Time.valueOf(flightBean.getArrivalTime()),
-									java.sql.Date.valueOf(flightBean.getDepartureDate()),
-									java.sql.Time.valueOf(flightBean.getDepartureTime()),
-									flightBean.getNoofseatsavailable()));
+							log.info(flightBean.toString());
 						} else {
 							log.info("No Flights are available with this Source");
 						}
@@ -247,19 +235,9 @@ public class AdminController {
 					FlightDetails bean4 = new FlightDetails();
 					bean4.setDestination(destination);
 					List<FlightDetails> flightDestination1 = service.searchFlightByDestination(destination);
-					log.info("<<--------------------------------------------------------------------->>");
-					log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s", "FlightId",
-							"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "DepartureDate",
-							"Departure Time", "NoofSeatAvailable"));
 					for (FlightDetails flightBean : flightDestination1) {
 						if (flightBean != null) {
-							log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s",
-									flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-									flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-									java.sql.Time.valueOf(flightBean.getArrivalTime()),
-									java.sql.Date.valueOf(flightBean.getDepartureDate()),
-									java.sql.Time.valueOf(flightBean.getDepartureTime()),
-									flightBean.getNoofseatsavailable()));
+							log.info(flightBean.toString());
 						} else {
 							log.info("No Flights are available with this Destination");
 						}
@@ -273,19 +251,9 @@ public class AdminController {
 					bean5.setFlightName(name);
 
 					List<FlightDetails> fname = service.searchFlightByName(name);
-					log.info("<--------------------------------------------------------------------->");
-					log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s", "FlightId",
-							"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "DepartureDate",
-							"Departure Time", "NoofSeatAvailable"));
 					for (FlightDetails flightBean : fname) {
 						if (flightBean != null) {
-							log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s",
-									flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-									flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-									java.sql.Time.valueOf(flightBean.getArrivalTime()),
-									java.sql.Date.valueOf(flightBean.getDepartureDate()),
-									java.sql.Time.valueOf(flightBean.getDepartureTime()),
-									flightBean.getNoofseatsavailable()));
+							log.info(flightBean.toString());
 						} else {
 							log.info("No Flights are available with this Flight Name");
 						}
@@ -318,19 +286,9 @@ public class AdminController {
 					break;
 				case 6:
 					List<FlightDetails> info = service.getFlightDetails();
-					log.info("<--------------------------------------------------------------------->");
-					log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s", "FlightId",
-							"Flight Name", "Source", "Destination", "Arrival Date", "Arrival Time", "Departure Date",
-							"Departure Time", "NoofSeatAvailable"));
 					for (FlightDetails flightBean : info) {
 						if (flightBean != null) {
-							log.info(String.format("%-10s %-10s %-10s %-10s %-13s %-15s %-20s %-20s %s",
-									flightBean.getFlightId(), flightBean.getFlightName(), flightBean.getSource(),
-									flightBean.getDestination(), java.sql.Date.valueOf(flightBean.getArrivalDate()),
-									java.sql.Time.valueOf(flightBean.getArrivalTime()),
-									java.sql.Date.valueOf(flightBean.getDepartureDate()),
-									java.sql.Time.valueOf(flightBean.getDepartureTime()),
-									flightBean.getNoofseatsavailable()));
+							log.info(flightBean.toString());
 						} else {
 							log.info("No Flight are available in the Flight Details");
 						}
@@ -338,17 +296,9 @@ public class AdminController {
 					break;
 				case 7:
 					List<BookingStatus> booking = service.getBookingStatus();
-
-					log.info("<--------------------------------------------------------------------->");
-					log.info(String.format("%-10s %-10s %-10s %s", "TicketID","FlightId",
-							 "UserID", "NoofSeatBooked"));
 					for (BookingStatus request : booking) {
 						if (request != null) {
-							log.info(String.format("%-10s %-10s %-10s %s",
-									request.getTicketId(),
-									request.getFlightId(),
-									request.getId(),
-									request.getNoofseatsbooked()));
+							log.info(request.toString());
 						} else {
 							log.info("Request not found in booking status");
 						}
