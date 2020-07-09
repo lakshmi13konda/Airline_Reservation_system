@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 
 	public List<FlightDetails> getFlightDetails() {
 		// TODO Auto-generated method stub
-		return null;
+		return admindao.getFlightDetails();
 	}
 
 	public boolean bookingStatus(UserInfo user, FlightDetails flightDetails) {

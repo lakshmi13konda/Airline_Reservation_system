@@ -98,8 +98,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	public boolean addFlights(FlightDetails flightDetails) {
-		
-		
+
 		conn = JdbcUtility.getConnection();
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -111,12 +110,12 @@ public class AdminDAOImpl implements AdminDAO {
 			pstmt.setString(3, flightDetails.getArrivalCity());
 			pstmt.setString(4, flightDetails.getDepartureCity());
 			pstmt.setInt(5, flightDetails.getNoofseatsavailable());
-			pstmt.setDate(6,  flightDetails.getArrivalDate());
-			pstmt.setDate(7,  flightDetails.getDepartureDate());
+			pstmt.setDate(6, flightDetails.getArrivalDate());
+			pstmt.setDate(7, flightDetails.getDepartureDate());
 			pstmt.setTime(8, java.sql.Time.valueOf(flightDetails.getArrivalTime()));
 			pstmt.setTime(9, java.sql.Time.valueOf(flightDetails.getDepartureTime()));
 			pstmt.executeUpdate();
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new AirlineException("Invalid credentials");
@@ -166,7 +165,6 @@ public class AdminDAOImpl implements AdminDAO {
 		throw new AirlineException("Cannot find any Flight With This Source");
 	}
 
-
 	public List<FlightDetails> searchFlightByarrivalCity(String arrivalCity) {
 		FlightDetails flight = null;
 		List<FlightDetails> searchList = new ArrayList<FlightDetails>();
@@ -194,7 +192,6 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 		throw new AirlineException("Cannot find any Flight With This Source");
 	}
-
 
 	public List<FlightDetails> searchFlightBydepartureCity(String departureCity) {
 		FlightDetails flight = null;
@@ -231,9 +228,9 @@ public class AdminDAOImpl implements AdminDAO {
 				FlightDetails info = new FlightDetails();
 				info.setFlightId(resultSet.getInt("flightId"));
 				info.setFlightName(resultSet.getString("flightName"));
-				info.setNoofseatsavailable(resultSet.getInt("noOfseatavailable"));
-				info.setArrivalCity(resultSet.getString("arrivalcity"));
-				info.setDepartureCity(resultSet.getString("departurecity"));
+				info.setNoofseatsavailable(resultSet.getInt("noOfseatsavailiable"));
+				info.setArrivalCity(resultSet.getString("flightArrivalcity"));
+				info.setDepartureCity(resultSet.getString("flightDeparturecity"));
 				info.setArrivalDate(resultSet.getDate("arrivalDate"));
 				info.setDepartureDate(resultSet.getDate("departureDate"));
 				info.setArrivalTime(resultSet.getTime("arrivalTime").toLocalTime());
@@ -273,26 +270,42 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	public List<BookingInfo> userBookings() {
-		List<BookingInfo> bookingInfos = new ArrayList<BookingInfo>();
+		List<BookingInfo> bookinginfo = new LinkedList<BookingInfo>();
 		try (Connection conn = JdbcUtility.getConnection();
 				Statement stmt = conn.createStatement();
-				ResultSet resultSet = stmt.executeQuery(QueryMapper.showBooking)) {
+				ResultSet resultSet = stmt.executeQuery(QueryMapper.bookinginfo1)) {
 			while (resultSet.next()) {
-				UserInfo info = new UserInfo();
-				info.getUserId();
-				info.getUserName();
+				BookingInfo info = new BookingInfo();
+				info.setFlightId(resultSet.getInt("flightId"));
+				info.setUserId(resultSet.getInt("userId"));
+				info.setTicketNo(resultSet.getInt("ticketNo"));
+				info.setNoofpassengers(resultSet.getInt("noofpassengers"));
+				bookinginfo.add(info);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new AirlineException("Booking not found");
 		}
-		return null;
+		return bookinginfo;
 	}
 
 	public List<CancelInfo> cancelledFlight() {
-		
-		return null;
-		
+		List<CancelInfo> cancelInfos = new LinkedList<CancelInfo>();
+		try (Connection conn = JdbcUtility.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet resultSet = stmt.executeQuery(QueryMapper.cancelledflight);) {
+			
+				while (resultSet.next()) {
+					CancelInfo info = new CancelInfo();
+					info.setFlightId(resultSet.getInt("flightId"));
+					info.setUserId(resultSet.getInt("userId"));
+					info.setTicketno(resultSet.getInt("ticketNo"));
+					cancelInfos.add(info);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new AirlineException("cancellation information not found");
+			}
+		return cancelInfos;
 	}
-
 }

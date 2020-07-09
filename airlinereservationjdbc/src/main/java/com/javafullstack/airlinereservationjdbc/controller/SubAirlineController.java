@@ -44,8 +44,6 @@ public class SubAirlineController {
 		int noofSeatsAvailable = 0;
 		Date arrivalDate = null;
 		Date departureDate = null;
-//		Time arrivalTime = null;
-//		Time departureTime = null;
 		UserInfo UserBean = null;
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -176,7 +174,7 @@ public class SubAirlineController {
 													try {
 													    //Parsing the String
 													    date3 = dateFormat1.parse(date1);
-													    arrivalDate = new Date(date3.getTime());
+													    departureDate = new Date(date3.getTime());
 													    //arrivaltime.gettime();
 													} catch (ParseException e) {
 													    // TODO Auto-generated catch block
@@ -353,18 +351,22 @@ public class SubAirlineController {
 															}
 														}
 													} catch (Exception e) {
+														e.printStackTrace();
 														log.info(e.getMessage());
 													}
 													break;
 												case 7:
 													try {
 														List<BookingInfo> info = service.userBooking();
-														
+														if (!info.isEmpty()) {
 															for (BookingInfo bookingInfo2 : info) {
 
 																log.info(bookingInfo2.toString());
 															}
-													
+														} else {
+															log.info("No Flight booked");
+														}
+
 													} catch (Exception e) {
 														e.printStackTrace();
 														log.info(e.getMessage());
@@ -374,17 +376,21 @@ public class SubAirlineController {
 												case 8:
 													try {
 														List<CancelInfo> cancel = service.cancelledFlight();
-														
+														if (!cancel.isEmpty()) {
 															for (CancelInfo cancelInfo2 : cancel) {
 
 																log.info(cancelInfo2.toString());
 															}
-														
+														} else {
+															log.info("No Flight booked");
+														}
+
 													} catch (Exception e) {
 														e.printStackTrace();
 														log.info(e.getMessage());
 													}
 													break;
+
 												case 9:
 													airlineReservationOperations();
 													break;

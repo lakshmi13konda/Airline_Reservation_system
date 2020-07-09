@@ -42,4 +42,8 @@ public interface QueryMapper {
 	
 	String deleteticket = "delete from bookinginfo where ticketNo = ?";
 	
+	String bookinginfo1 = "select * from bookinginfo";
+	
+	String cancelledflight = "select * from cancelinfo";
+	
 }
