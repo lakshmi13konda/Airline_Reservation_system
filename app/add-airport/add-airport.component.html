@@ -1,0 +1,81 @@
+<body>
+    <div class="container form-group">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card my-5" style="background-color: transparent;">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Add Airport</h4>
+                        <form #addAirports="ngForm" (ngSubmit)="addAirport(addAirports)">
+                            <div class="form-group">
+                                <label for="abbreviation">Abbreviation</label>
+                                <input type="text" name="abbreviation" class="form-control" #abbreviation='ngModel'
+                                    [(ngModel)]="selectedAirport.abbreviation" required minlength="3" maxlength="3">
+                            </div>
+                            <div *ngIf='abbreviation.touched && abbreviation.invalid'>
+                                <p *ngIf='abbreviation.errors.required'>This
+                                    field is required</p>
+                                <p *ngIf='abbreviation.errors.minlength'>This
+                                    field requires 3 characters only</p>
+                                <p *ngIf='abbreviation.errors.maxlength'>This
+                                    field requires 3 characters only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="airportName">Airport Name</label>
+                                <input type="text" name="airportName" class="form-control" #airportName='ngModel'
+                                    [(ngModel)]="selectedAirport.airportName" required minlength="3" maxlength="25">
+                            </div>
+                            <div *ngIf='airportName.touched && airportName.invalid'>
+                                <p *ngIf='airportName.errors.required'>This
+                                    field is required</p>
+                                <p *ngIf='airportName.errors.minlength'>This
+                                    field requires characters only </p>
+                                <p *ngIf='airportName.errors.maxlength'>This
+                                    field requires 25 characters only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" name="state" class="form-control" #state='ngModel'
+                                    [(ngModel)]="selectedAirport.state" required minlength="3">
+                            </div>
+                            <div *ngIf='state.touched && state.invalid'>
+                                <p *ngIf='state.errors.required'>This
+                                    field is required</p>
+                                <p *ngIf='state.errors.minlength'>This
+                                    field requires characters only </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" name="city" class="form-control" #city='ngModel'
+                                    [(ngModel)]="selectedAirport.city" required minlength="3">
+                            </div>
+                            <div *ngIf='city.touched && city.invalid'>
+                                <p *ngIf='city.errors.required'>This
+                                    field is required</p>
+                                <p *ngIf='city.errors.minlength'>This
+                                    field requires characters only </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZipCode</label>
+                                <input type="number" name="zipCode" class="form-control" #zipCode='ngModel'
+                                    [(ngModel)]="selectedAirport.zipCode" required minlength="6" maxlength="6">
+                            </div>
+                            <div *ngIf='zipCode.touched && zipCode.invalid'>
+                                <p *ngIf='zipCode.errors.required'>This
+                                    field is required</p>
+                                <p *ngIf='zipCode.errors.minlength'>This
+                                    field requires numbers only </p>
+                                <p *ngIf='zipCode.errors.maxlength'>This
+                                    field requires numbers only </p>
+                            </div>
+                            <div class="btn-group float-right">
+                                <button type="reset" class="btn btn-outline-dark">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary"
+                                    [disabled]='addAirports.invalid'>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

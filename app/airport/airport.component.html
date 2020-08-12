@@ -1,0 +1,94 @@
+<body>  
+<div class="container mt-5">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Index</th>
+                <th>Abbrevation</th>
+                <th>Airport Name</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Delete Airport</th>
+                <th>Update Airport</th>
+
+            </tr>
+        </thead>
+        <tbody style="color: darkblue;">
+            <tr *ngFor="let airport of airportInfo ; index as i">
+                <td>{{i+1}}</td>
+                <td>{{airport.abbreviation}}</td>
+                <td>{{airport.airportName}}</td>
+                <td>{{airport.state}}</td>
+                <td>{{airport.city}}</td>
+                <td>{{airport.zipCode}}</td>
+
+                <td>
+                    <button class="btn btn-danger" (click)='deleteAirport(airport)'>Cancel</button>
+                </td>
+                <td>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalScrollable" (click)="selectAirport(airport)">
+                        Update
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalScrollableTitle">Update Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form #updateAirport="ngForm" (ngSubmit)="updateAirportInfo(updateAirport)">
+                                        <div class="form-group">
+                                            <label for="airportName">Airport Name</label>
+                                            <input type="text" name="airportName" #AirportNumber='ngModel'
+                                                class="form-control" [(ngModel)]="selectedAirport.airportName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="abbreviation">Abbreviation</label>
+                                            <input type="text" name="abbreviation" #abbreviation='ngModel'
+                                                class="form-control" [(ngModel)]="selectedAirport.abbreviation">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            <input type="text" name="state" #state='ngModel' class="form-control"
+                                                [(ngModel)]="selectedAirport.state">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zipCode">Zip Code</label>
+                                            <input type="text" name="zipCode" #zipCode='ngModel' class="form-control"
+                                                [(ngModel)]="selectedAirport.zipCode">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" name="city" #city='ngModel' class="form-control"
+                                                [(ngModel)]="selectedAirport.city">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Reset</button>
+
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal" (click)="updateAirportInfo(updateAirport)">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>

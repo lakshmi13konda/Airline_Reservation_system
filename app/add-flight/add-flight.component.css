@@ -1,0 +1,22 @@
+body {
+    background-image: url('src/assets/images/airplane-taking-off-from-airport_37416-65.jpg');
+    background-size: cover;
+    height: 1200px;
+    background-position-x: center;
+    background-position-y: center;
+    background-attachment: fixed;
+}
+
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  
+  input.ng-valid.ng-touched {
+    border: 1px solid darkorange;
+  }
+
+  label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+  }

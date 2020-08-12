@@ -1,0 +1,6 @@
+body {
+    background-image: url("src/assets/images/person_at_airport_holding_coffee_and_luggage.jpg");
+    background-position-x: center;
+    background-size: cover;
+    background-attachment: fixed;
+}

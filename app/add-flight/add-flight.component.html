@@ -1,0 +1,168 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-addFlight my-5"  style="background-color: transparent;">
+                    <div class="card-body">
+                        <div class="form-row"></div>
+                        <form #addFlight="ngForm" (ngSubmit)="addFlightDetails(addFlight)">
+                            <div class="form-group">
+                                <label for="flightNumber">Flight Number</label>
+                                <input type="text" name="flightNumber" #flightNumber='ngModel' class="form-control"
+                                    [(ngModel)]="selectedFlight.flightNumber" required minlength="5" maxlength="5">
+                            </div>
+                            <div *ngIf='flightNumber.touched && flightNumber.invalid'>
+                                <p *ngIf='flightNumber.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='flightNumber.errors.minlength'>This
+                                    field requires 5
+                                    characters</p>
+                                <p *ngIf='flightNumber.errors.flightNumber'>
+                                    this field accept
+                                    valid flight numbers only</p>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="departureCity">Source</label>
+                                <input type="text" name="departureCity" #departureCity='ngModel' class="form-control"
+                                    [(ngModel)]="selectedFlight.departureCity" required minlength="" maxlength="">
+                            </div>
+                            <div *ngIf='departureCity.touched && departureCity.invalid'>
+                                <p *ngIf='departureCity.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='departureCity.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='departureCity.errors.flightNumber'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="arrivalCity">Destination</label>
+                                <input type="text" name="arrivalCity" class="form-control" #arrivalCity='ngModel'
+                                    [(ngModel)]="selectedFlight.arrivalCity" required minlength="" maxlength="">
+                            </div>
+                            <div *ngIf='arrivalCity.touched && arrivalCity.invalid'>
+                                <p *ngIf='arrivalCity.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='arrivalCity.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='arrivalCity.errors.arrivalCity'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="airline">Airline</label>
+                                <input type="text" name="airline" class="form-control" #airline='ngModel'
+                                    [(ngModel)]="selectedFlight.airline" required minlength="" maxlength="">
+                            </div>
+                            <div *ngIf='airline.touched && arrivalCity.invalid'>
+                                <p *ngIf='airline.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='airline.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='airline.errors.arrivalCity'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="departureDate">Departure Date</label>
+                                <input type="date" name="departureDate" class="form-control" #departureDate='ngModel'
+                                    [(ngModel)]="selectedFlight.departureDate" required>
+                            </div>
+                            <div *ngIf='departureDate.touched && departureDate.invalid'>
+                                <p *ngIf='airline.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='departureDate.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='departureDate.errors.departureDate'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="arrivalDate">Arrival Date</label>
+                                <input type="date" name="arrivalDate" class="form-control" #arrivalDate='ngModel'
+                                    [(ngModel)]="selectedFlight.arrivalDate" required>
+                            </div>
+                            <div *ngIf='arrivalDate.touched && arrivalDate.invalid'>
+                                <p *ngIf='arrivalDate.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='arrivalDate.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='arrivalDate.errors.arrivalDate'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="departureTime">Departure Time</label>
+                                <input type="time" name="departureTime" class="form-control" #departureTime='ngModel'
+                                    [(ngModel)]="selectedFlight.departureTime" required>
+                            </div>
+                            <div *ngIf='departureTime.touched && departureTime.invalid'>
+                                <p *ngIf='airline.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='departureTime.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='departureTime.errors.departureTime'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="arrivalTime">Arrival Time</label>
+                                <input type="time" name="arrivalTime" class="form-control" #arrivalTime='ngModel'
+                                    [(ngModel)]="selectedFlight.arrivalTime">
+                            </div>
+                            <div *ngIf='arrivalTime.touched && arrivalTime.invalid'>
+                                <p *ngIf='airline.errors.required'>
+                                    This field is required</p>
+                                <p *ngIf='arrivalTime.errors.minlength'>This
+                                    field requires 4
+                                    characters</p>
+                                <p *ngIf='arrivalTime.errors.arrivalTime'>
+                                    this field accept
+                                    City only</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstClassSeats">First Class Seat</label>
+                                <input type="number" name="firstClassSeats" class="form-control"
+                                    #firstClassSeats='ngModel' [(ngModel)]="selectedFlight.firstClassSeats" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstClassSeatFare">First Class Seat Fare</label>
+                                <input type="number" name="firstClassSeatFare" class="form-control"
+                                    #firstClassSeatFare='ngModel' [(ngModel)]="selectedFlight.firstClassSeatFare"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bussinessClassSeats">Business Class Seat</label>
+                                <input type="number" name="bussinessClassSeats" class="form-control"
+                                    #bussinessClassSeats='ngModel' [(ngModel)]="selectedFlight.bussinessClassSeats"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bussinessClassFare">Business Class Seat Fare</label>
+                                <input type="number" name="bussinessClassFare" class="form-control"
+                                    #bussinessClassSeatFare='ngModel' [(ngModel)]="selectedFlight.bussinessClassFare"
+                                    required>
+                            </div>
+
+                            <div class="btn-group float-right">
+                                <button type="reset" class="btn btn-dark">Reset</button>
+                                <button type="submit" class="btn btn-primary " style="margin-left: 20px;"
+                                    [disabled]='addFlight.invalid'>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
